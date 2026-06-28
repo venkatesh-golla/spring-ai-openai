@@ -1,11 +1,23 @@
 spring:
   application:
     name: openai
+  #  ai:
+  #    openai:
+  #      api-key: ${OPENAI_API_KEY}
   ai:
-    openai:
-      api-key: ${OPENAI_API_KEY}
+    model:
+      chat: ollama
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3.2
 logging:
   pattern:
     console: "%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n"
 server:
   port: 8090
+
+#Download Ollama from https://ollama.com/download/windows
+#Open the application in desktop
+#Run "ollama run llama3.2" in cmd. We can chat with llm from cmd or from this spring application
+#Run the spring boot project and perform requests - curl --location 'localhost:8090/api/chat?message=what%20is%20ai'
