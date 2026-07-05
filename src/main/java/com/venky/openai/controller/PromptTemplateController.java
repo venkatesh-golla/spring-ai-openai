@@ -1,6 +1,8 @@
 package com.venky.openai.controller;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,17 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class PromptTemplateController {
-  private String promptTemplate =
-      """
-            A customer named {customerName} sent the following message:
-                           "{customerMessage}"
+  @Value("classpath:/promptTemplate/supportEmailPromptTemplate.st")
+  Resource userPromptTemplate;
 
-            Write a polite and helpful email response addressing the issue.
-            Maintain a professional tone and provide reassurance.
-
-            Respond as if you're writing the email body only. Don't include subject,
-            signature
-            """;
   private final ChatClient chatClient;
 
   public PromptTemplateController(ChatClient chatClient) {
@@ -40,7 +34,7 @@ public class PromptTemplateController {
         .user(
             (promptTemplateSpec) ->
                 promptTemplateSpec
-                    .text(promptTemplate)
+                    .text(userPromptTemplate)
                     .param("customerName", customerName)
                     .param("customerMessage", customerMessage))
         .call()
