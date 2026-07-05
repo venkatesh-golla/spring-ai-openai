@@ -1,19 +1,9 @@
 spring:
   application:
     name: openai
-    ai:
-      openai:
-        chat:
-          model: ai/gemma3
-          base-url: http://localhost:12434/engines/v1
-        api-key: dummy
-#  ai:
-#    model:
-#      chat: ollama
-#    ollama:
-#      base-url: http://localhost:11434
-#      chat:
-#        model: llama3.2
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
 logging:
   pattern:
     console: "%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n"
