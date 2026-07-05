@@ -2,7 +2,7 @@ package com.venky.openai.config;
 
 import com.venky.openai.advisor.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class ChatClientConfig {
   @Bean
   public ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
+    var openAIChatOptions =
+        OpenAiChatOptions.builder().model("gpt-5.4-mini").temperature(0.8).maxCompletionTokens(100);
+
     return chatClientBuilder
-        .defaultAdvisors(new SimpleLoggerAdvisor())
+        .defaultOptions(openAIChatOptions)
+        //        .defaultAdvisors(new SimpleLoggerAdvisor())
         .defaultAdvisors(new TokenUsageAuditAdvisor())
         .defaultSystem(
             """
