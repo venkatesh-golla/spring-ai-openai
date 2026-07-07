@@ -22,7 +22,11 @@ public class ChatMemoryController {
         chatClientWithMemory
             .prompt()
             .user(message)
-            .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, username))
+            .advisors(
+                advisorSpec ->
+                    advisorSpec.param(
+                        ChatMemory.CONVERSATION_ID,
+                        username != null && !username.isEmpty() ? username : "default"))
             .call()
             .content();
     return ResponseEntity.ok(response);

@@ -2,8 +2,20 @@ spring:
   application:
     name: openai
   ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            schema: classpath:schema/schema-h2db.sql
+            initialize-schema: always
     openai:
       api-key: ${OPENAI_API_KEY}
+  datasource:
+    url: jdbc:h2:file:C:\\Users\\golla\\chatmemory;AUTO_SERVER=true
+    driver-class-name: org.h2.Driver
+    username: venky
+    password: 12345
+
 logging:
   pattern:
     console: "%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n"
@@ -16,3 +28,4 @@ logging:
               advisor: DEBUG
 server:
   port: 8090
+
