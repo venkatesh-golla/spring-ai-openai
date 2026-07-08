@@ -1,0 +1,258 @@
+{
+  "info": {
+    "_postman_id": "c6dd0ff6-dc1d-4e79-88cc-4cb87b12811b",
+    "name": "spring-ai-openai",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41959056",
+    "_collection_link": "https://go.postman.co/collection/41959056-c6dd0ff6-dc1d-4e79-88cc-4cb87b12811b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Chat",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/chat?message=what is your name and what model are you using?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "chat"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "what is your name and what model are you using?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Chat with memory",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venky",
+            "type": "text"
+          },
+          {
+            "key": "username",
+            "value": "golla",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/chat-memory?message=What is my name?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "chat-memory"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "What is my name?"
+            },
+            {
+              "key": "message",
+              "value": "My name is Golla",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stream",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/stream?message=what is your name and what model are you using?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "stream"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "what is your name and what model are you using?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Structured Response",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/country-cities?message=Can you please provide the cities present in canada?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "country-cities"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "Can you please provide the cities present in canada?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Country Detail List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/country-cities?message=Can you please provide the cities present in canada?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "country-cities"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "Can you please provide the cities present in canada?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cities List",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/city-list?message=Can you please provide the cities present in canada?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "city-list"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "Can you please provide the cities present in canada?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Country Cities Map Copy",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/country-cities-map?message=Can you please provide the cities present in canada?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "country-cities-map"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "Can you please provide the cities present in canada?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Prompt Stuffing",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/prompt-stuffing?message=leaves per yaer?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "prompt-stuffing"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "leaves per yaer?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Email",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/email?customerMessage=I am unable to access my account and is locked. Need help&customerName=venkatesh golla",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "email"
+          ],
+          "query": [
+            {
+              "key": "customerMessage",
+              "value": "I am unable to access my account and is locked. Need help"
+            },
+            {
+              "key": "customerName",
+              "value": "venkatesh golla"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
