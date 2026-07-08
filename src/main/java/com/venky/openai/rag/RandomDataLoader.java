@@ -7,7 +7,7 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class RandomDataLoader {
   private final VectorStore vectorStore;
 
