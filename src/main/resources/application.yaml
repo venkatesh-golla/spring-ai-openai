@@ -8,6 +8,12 @@ spring:
           jdbc:
             schema: classpath:schema/schema-h2db.sql
             initialize-schema: always
+    vectorstore:
+      qdrant:
+        host: localhost
+        port: 6334
+        initialize-schema: true
+        collection-name: ai-vectorstore
     openai:
       api-key: ${OPENAI_API_KEY}
   datasource:
@@ -15,6 +21,10 @@ spring:
     driver-class-name: org.h2.Driver
     username: venky
     password: 12345
+  docker:
+    compose:
+      stop:
+        command: down
 
 logging:
   pattern:
