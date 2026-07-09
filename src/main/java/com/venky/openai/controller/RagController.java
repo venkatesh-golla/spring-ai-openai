@@ -34,23 +34,24 @@ public class RagController {
   @GetMapping("/random/chat")
   public ResponseEntity<String> chatWithRag(
       @RequestParam("message") String message, @RequestHeader("username") String username) {
-    SearchRequest searchRequest =
-        SearchRequest.builder().query(message).topK(3).similarityThreshold(0.5).build();
-    List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
-    String similarContext =
-        similarDocuments.stream()
-            .map(Document::getText)
-            .collect(Collectors.joining(System.lineSeparator()));
+    //    SearchRequest searchRequest =
+    //        SearchRequest.builder().query(message).topK(3).similarityThreshold(0.5).build();
+    //    List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
+    //    String similarContext =
+    //        similarDocuments.stream()
+    //            .map(Document::getText)
+    //            .collect(Collectors.joining(System.lineSeparator()));
     String llmResponse =
         chatClient
             .prompt()
-            .system(
-                promptSystemSpec ->
-                    promptSystemSpec.text(promptTemplate).param("documents", similarContext))
+            //            .system(
+            //                promptSystemSpec ->
+            //                    promptSystemSpec.text(promptTemplate).param("documents",
+            // similarContext))
             .advisors(
                 advisorSpec ->
                     advisorSpec.param(
-                            ChatMemory.CONVERSATION_ID,
+                        ChatMemory.CONVERSATION_ID,
                         username != null && !username.isEmpty() ? username : "default"))
             .user(message)
             .call()
@@ -61,28 +62,29 @@ public class RagController {
 
   @GetMapping("/document/chat")
   public ResponseEntity<String> documentChatWithRag(
-          @RequestParam("message") String message, @RequestHeader("username") String username) {
-    SearchRequest searchRequest =
-            SearchRequest.builder().query(message).topK(3).similarityThreshold(0.5).build();
-    List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
-    String similarContext =
-            similarDocuments.stream()
-                    .map(Document::getText)
-                    .collect(Collectors.joining(System.lineSeparator()));
+      @RequestParam("message") String message, @RequestHeader("username") String username) {
+    //    SearchRequest searchRequest =
+    //            SearchRequest.builder().query(message).topK(3).similarityThreshold(0.5).build();
+    //    List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
+    //    String similarContext =
+    //            similarDocuments.stream()
+    //                    .map(Document::getText)
+    //                    .collect(Collectors.joining(System.lineSeparator()));
     String llmResponse =
-            chatClient
-                    .prompt()
-                    .system(
-                            promptSystemSpec ->
-                                    promptSystemSpec.text(hrPromptTemplateDocument).param("documents", similarContext))
-                    .advisors(
-                            advisorSpec ->
-                                    advisorSpec.param(
-                                            ChatMemory.CONVERSATION_ID,
-                                            username != null && !username.isEmpty() ? username : "default"))
-                    .user(message)
-                    .call()
-                    .content();
+        chatClient
+            .prompt()
+            //                    .system(
+            //                            promptSystemSpec ->
+            //
+            // promptSystemSpec.text(hrPromptTemplateDocument).param("documents", similarContext))
+            .advisors(
+                advisorSpec ->
+                    advisorSpec.param(
+                        ChatMemory.CONVERSATION_ID,
+                        username != null && !username.isEmpty() ? username : "default"))
+            .user(message)
+            .call()
+            .content();
 
     return ResponseEntity.ok(llmResponse);
   }
