@@ -1,11 +1,7 @@
 package com.venky.openai.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
-import org.springframework.ai.document.Document;
-import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class RagController {
   private final ChatClient chatClient;
   private final VectorStore vectorStore;
+  private final ChatClient webSearchChatClient;
 
   @Value("classpath:/promptTemplate/systemPromptRandomDataTemplate.st")
   private Resource promptTemplate;
@@ -26,9 +23,12 @@ public class RagController {
   private Resource hrPromptTemplateDocument;
 
   public RagController(
-      @Qualifier("chatClientWithMemory") ChatClient chatClient, VectorStore vectorStore) {
+      @Qualifier("chatClientWithMemory") ChatClient chatClient,
+      VectorStore vectorStore,
+      @Qualifier("webSearchRAGChatClient") ChatClient webSearchChatClient) {
     this.chatClient = chatClient;
     this.vectorStore = vectorStore;
+    this.webSearchChatClient = webSearchChatClient;
   }
 
   @GetMapping("/random/chat")
@@ -86,6 +86,23 @@ public class RagController {
             .call()
             .content();
 
+    return ResponseEntity.ok(llmResponse);
+  }
+
+  @GetMapping("/web-search/chat")
+  public ResponseEntity<String> webSearchChat(
+      @RequestParam("message") String message, @RequestHeader("username") String username) {
+    String llmResponse =
+        webSearchChatClient
+            .prompt()
+            .advisors(
+                adv ->
+                    adv.param(
+                        ChatMemory.CONVERSATION_ID,
+                        username != null && !username.isEmpty() ? username : "default"))
+            .user(message)
+            .call()
+            .content();
     return ResponseEntity.ok(llmResponse);
   }
 }
