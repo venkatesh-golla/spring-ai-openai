@@ -21,6 +21,12 @@ spring:
     driver-class-name: org.h2.Driver
     username: venky
     password: 12345
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
   docker:
     compose:
       stop:
