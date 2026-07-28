@@ -45,3 +45,6 @@ logging:
 server:
   port: 8090
 
+audit:
+  token-usage:
+    enabled: true

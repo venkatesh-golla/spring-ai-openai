@@ -1,6 +1,5 @@
 package com.venky.openai.config;
 
-import com.venky.openai.advisor.TokenUsageAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +14,6 @@ public class ChatClientConfig {
 
     return chatClientBuilder
         .defaultOptions(openAIChatOptions)
-        //        .defaultAdvisors(new SimpleLoggerAdvisor())
-        .defaultAdvisors(new TokenUsageAuditAdvisor())
         .defaultSystem(
             """
                                         You are an internal HR assistant. Your role is to help\s
