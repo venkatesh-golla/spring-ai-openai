@@ -33,7 +33,107 @@
       "response": []
     },
     {
+      "name": "Open Chat - Redis",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8090/api/open-chat?message=what's the capital city of india?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "open-chat"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "what's the capital city of india?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Local-Time",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venky",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/tools/local-time?message=what is the current time in vancouver, canada?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "tools",
+            "local-time"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "what is the current time in vancouver, canada?"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Chat with memory",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venky",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "username",
+            "value": "sriram",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/chat-memory?message=who are the favourites in fifa 2026 as of today?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "chat-memory"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "who are the favourites in fifa 2026 as of today?"
+            },
+            {
+              "key": "message",
+              "value": "sri",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Rag Random Chat",
       "request": {
         "method": "GET",
         "header": [
@@ -50,25 +150,117 @@
           }
         ],
         "url": {
-          "raw": "localhost:8090/api/chat-memory?message=What is my name?",
+          "raw": "localhost:8090/api/rag/random/chat?message=is it okay to walk everyday?",
           "host": [
             "localhost"
           ],
           "port": "8090",
           "path": [
             "api",
-            "chat-memory"
+            "rag",
+            "random",
+            "chat"
           ],
           "query": [
             {
               "key": "message",
-              "value": "What is my name?"
+              "value": "is it okay to walk everyday?"
             },
             {
               "key": "message",
               "value": "My name is Golla",
               "type": "text",
               "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Rag Web Search Random Chat",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venky",
+            "type": "text"
+          },
+          {
+            "key": "username",
+            "value": "golla",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/rag/web-search/chat?message=How did the stock market in canada perform today?",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "rag",
+            "web-search",
+            "chat"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "How did the stock market in canada perform today?"
+            },
+            {
+              "key": "message",
+              "value": "My name is Golla",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Rag Document Chat",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venkat",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "username",
+            "value": "golla",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/rag/document/chat?message=let me know about notice period",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "rag",
+            "document",
+            "chat"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "My name is Golla",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "message",
+              "value": "let me know about notice period"
             }
           ]
         }
@@ -131,19 +323,19 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:8090/api/country-cities?message=Can you please provide the cities present in canada?",
+          "raw": "localhost:8090/api/country-detail-list?message=Can you please provide the cities present in Asia?",
           "host": [
             "localhost"
           ],
           "port": "8090",
           "path": [
             "api",
-            "country-cities"
+            "country-detail-list"
           ],
           "query": [
             {
               "key": "message",
-              "value": "Can you please provide the cities present in canada?"
+              "value": "Can you please provide the cities present in Asia?"
             }
           ]
         }
@@ -248,6 +440,38 @@
             {
               "key": "customerName",
               "value": "venkatesh golla"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Help-Desk",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "username",
+            "value": "venky",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8090/api/tools/help-desk?message=unable to view UI page for products, create a ticket with user as x, priority urgent, email v@gmail.com",
+          "host": [
+            "localhost"
+          ],
+          "port": "8090",
+          "path": [
+            "api",
+            "tools",
+            "help-desk"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "unable to view UI page for products, create a ticket with user as x, priority urgent, email v@gmail.com"
             }
           ]
         }
